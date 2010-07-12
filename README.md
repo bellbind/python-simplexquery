@@ -28,3 +28,4 @@ for ubuntu lucid
 
 - [PyPI page](http://pypi.python.org/pypi/python-simplexquery)
 - [XQilla Home](http://xqilla.sourceforge.net/HomePage)
+- [W3C XML XQuery](http://www.w3.org/XML/Query/)
