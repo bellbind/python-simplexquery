@@ -29,7 +29,7 @@ setup(
     version="0.1",
     author="bellbind",
     author_email="bellbind@gmail.com",
-    url="http://twitter.com/bellbind",
+    url="http://github.com/bellbind/python-simplexquery",
     packages=[],
     keywords=["xml", "xquery", "xqilla"],
     license="http://www.apache.org/licenses/LICENSE-2.0",

@@ -1,4 +1,4 @@
-# python-xquery
+# python-simplexquery
 
 simple native XQuery processing module using xqilla.
 
