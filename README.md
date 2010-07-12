@@ -20,4 +20,5 @@ for ubuntu lucid
 
 ## Resources
 
-- XQilla: http://xqilla.sourceforge.net/HomePage
+- [PyPI](http://pypi.python.org/pypi/python-simplexquery)
+- [XQilla](http://xqilla.sourceforge.net/HomePage)
