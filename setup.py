@@ -26,7 +26,7 @@ from setuptools import setup, Extension
 
 setup(
     name="python-simplexquery",
-    version="0.1",
+    version="0.2",
     author="bellbind",
     author_email="bellbind@gmail.com",
     url="http://github.com/bellbind/python-simplexquery",
