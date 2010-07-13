@@ -7,6 +7,8 @@ simple native XQuery processing module using xqilla.
     import simplexquery as sxq
     print(sxq.execute(u"<body>{string(/user)}</body>", u"<user>Taro</user>"))
 
+see example.py
+
 ## Requires for build
 
 - xqilla
