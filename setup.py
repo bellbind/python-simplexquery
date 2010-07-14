@@ -28,6 +28,25 @@ except:
     from distutils.core import setup, Extension
     pass
 
+setting = {
+    "LIBRARIES": ["xqilla", "xerces-c"],
+    "LIBRARY_DIRS": [],
+    "INCLUDE_DIRS": [],
+    }
+
+try:
+    import os
+    for key in setting.keys():
+        if key in os.environ:
+            setting[key] = filter(
+                None, (s.strip() for s in os.environ[key].split(",")))
+            pass
+        pass
+    pass
+except:
+    pass
+
+
 setup(
     name="python-simplexquery",
     version="0.2",
@@ -46,6 +65,8 @@ setup(
         Extension(
             "simplexquery",
             ["xqilla.cpp", "xquery.c"],
-            libraries=["xqilla", "xerces-c"]
+            libraries=setting["LIBRARIES"],
+            library_dirs=setting["LIBRARY_DIRS"],
+            include_dirs=setting["INCLUDE_DIRS"],
             )
         ])
