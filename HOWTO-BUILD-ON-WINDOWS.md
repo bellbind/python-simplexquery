@@ -5,9 +5,11 @@
 ## Setup Visual C++ 2008 Express Edition
 
 download and install(, register) "Visual C++ 2008 Express"
+
 - vcsetup.exe from http://www.microsoft.com/express/downloads/
 
 download and install "Windows SDK 7.1"
+
 - winsdk_web.exe from http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=6b6c21d2-2006-4afa-9702-529fa782d63b
 
 ## Build XQilla-2.2.4
@@ -35,7 +37,7 @@ download and extract xerces-c lib (vc9 version) in the directory:
 
 start Visual Studio:
 
-- open "c:\vc2008\xqilla\Win32Projects/VC8/XQilla.sln" file by menu "File -> Open -> Project and Solution"
+- open "C:\vc2008\xqilla\Win32Projects/VC8/XQilla.sln" file by menu "File -> Open -> Project and Solution"
 
 modify project environments:
 
@@ -44,14 +46,14 @@ modify project environments:
 - select "Include files" on right dropdown box
 - add 3 new lines and set directories:
 
-    C:\Program Files\Microsoft SDKs\Windows\v6.0A\Include
-    C:\vc2008\xerces-c-3.1.1-x86-windows-vc-9.0\include
-    C:\vc2008\xqilla\include
+      C:\Program Files\Microsoft SDKs\Windows\v6.0A\Include
+      C:\vc2008\xerces-c-3.1.1-x86-windows-vc-9.0\include
+      C:\vc2008\xqilla\include
 
 - select "Library files" on right dropdown box
 - add a new line and set directory:
 
-    C:\vc2008\xerces-c-3.1.1-x86-windows-vc-9.0\lib
+      C:\vc2008\xerces-c-3.1.1-x86-windows-vc-9.0\lib
 
 - push "OK"
 
@@ -73,9 +75,11 @@ build on Release mode:
 
 ## build python-simplexquery bdist
 
-(change BASE_DIR for your environment)
+(change the 3 vars for your environment)
 
     BASE_DIR='C:\vc2008'
+    CYGBASE_DIR=/cygdrive/c/vc2008
+    PYTHON_HOME=/cygdrive/c/Python27
     
     git clone git@github.com:bellbind/python-simplexquery.git
     cd python-simplexquery
@@ -84,7 +88,7 @@ build on Release mode:
     export LIBRARIES="xerces-c_3,xqilla22"
     /cygdrive/c/Python27/python.exe setup.py build
     
-    cp /cygdrive/c/vc2008/xerces-c-3.1.1-x86-windows-vc-9.0/bin/xerces-c_3_1.dll build/lib.win32-2.7/
-    cp /cygdrive/c/vc2008/xqilla/build/windows/VC8/Win32/Release/xqilla22.dll build/lib.win32-2.7/
-    /cygdrive/c/Python27/python.exe setup.py bdist_exe
-    /cygdrive/c/Python27/python.exe setup.py bdist_msi
+    cp $CYGBASE_DIR/xerces-c-3.1.1-x86-windows-vc-9.0/bin/xerces-c_3_1.dll build/lib.win32-2.7/
+    cp $CYGBASE_DIR/xqilla/build/windows/VC8/Win32/Release/xqilla22.dll build/lib.win32-2.7/
+    $PYTHON_HOME/python.exe setup.py bdist_wininst
+    $PYTHON_HOME/python.exe setup.py bdist_msi
