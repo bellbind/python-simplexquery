@@ -9,22 +9,27 @@ simple native XQuery processing module using xqilla.
 
 see example.py
 
-## Requires for build
+## Install by easy_install
+
+   easy_install python-simplexquery
+
+### Requires for build
 
 - xqilla
 - xerces-c
 
 for ubuntu lucid
 
-    apt-get install libxqilla-dev libxerces-c2-dev
-
-## Install by easy_install
-
-   easy_install python-simplexquery
+    apt-get build-dep xqilla
+    apt-get install libxqilla-dev
 
 ## Build from source
 
     python setup.py bdist_egg
+
+## for Windows
+
+download from [github download](http://github.com/bellbind/python-simplexquery/downloads)
 
 ## Resources
 
