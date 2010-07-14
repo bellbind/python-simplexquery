@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-u"""simple native XQuery processing module using xqilla.
+"""simple native XQuery processing module using xqilla.
 
 usage:
 >>> import simplexquery as sxq
@@ -21,12 +21,17 @@ Topic :: Text Processing :: Markup :: XML
 Topic :: Software Development :: Libraries :: Python Modules
 Operating System :: Unix
 """
-
-from setuptools import setup, Extension
+try:
+    from setuptools import setup, Extension
+    pass
+except:
+    from distutils.core import setup, Extension
+    pass
 
 setup(
     name="python-simplexquery",
     version="0.2",
+    
     author="bellbind",
     author_email="bellbind@gmail.com",
     url="http://github.com/bellbind/python-simplexquery",
