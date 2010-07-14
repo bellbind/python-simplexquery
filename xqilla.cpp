@@ -33,8 +33,9 @@ extern "C" {
       Item::Ptr item;
       while (item = result->next(context)) {
 	// it must keep the u8val instance until copy finished
-	UTF8Str u8val(item->asString(context)); 
-	std::string stdval(u8val.UTF8Form());
+	//UTF8Str u8val(item->asString(context)); 
+	//std::string stdval(u8val.UTF8Form());
+	std::string stdval(UTF8(item->asString(context)));
 	//std::cout << stdval << std::endl;
 	char * buf = (char *) malloc(stdval.length() + 1);
 	strcpy(buf, stdval.c_str());
@@ -75,8 +76,10 @@ extern "C" {
       Item::Ptr item;
       while (item = result->next(context)) {
 	// it must keep the u8val instance until copy finished
-	UTF8Str u8val(item->asString(context)); 
-	callback(callback_arg, u8val.UTF8Form());
+	//UTF8Str u8val(item->asString(context)); 
+	//callback(callback_arg, u8val.UTF8Form());
+	std::string stdval(UTF8(item->asString(context)));
+	callback(callback_arg, stdval.c_str());
       }
       return 1;
     } catch (XQException ex) {

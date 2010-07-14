@@ -4,10 +4,10 @@
 
 extern char * execute(const char *, const char *);
 extern int execute_all(const char *, const char *, 
-		       void (void*, const char*), void*);
+		       void (void *, const char *), void *);
 
-static PyObject*
-xquery_execute(PyObject* self, PyObject* args)
+static PyObject *
+xquery_execute(PyObject * self, PyObject * args)
 {
   char * xquery = NULL;
   char * context_xml = NULL;
@@ -19,7 +19,7 @@ xquery_execute(PyObject* self, PyObject* args)
   {
     char * buf = execute(xquery, context_xml);
     if (!buf) Py_RETURN_NONE; 
-    PyObject* ret = PyUnicode_DecodeUTF8(buf, strlen(buf), NULL);
+    PyObject * ret = PyUnicode_DecodeUTF8(buf, strlen(buf), NULL);
     free(buf);
     return ret;
   }
@@ -33,8 +33,8 @@ append_pylist(void * pylist, const char * buf)
   PyList_Append(list, ret);
 }
 
-static PyObject*
-xquery_execute_all(PyObject* self, PyObject* args)
+static PyObject *
+xquery_execute_all(PyObject * self, PyObject * args)
 {
   char * xquery = NULL;
   char * context_xml = NULL;
