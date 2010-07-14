@@ -18,10 +18,12 @@ xquery_execute(PyObject * self, PyObject * args)
   }
   {
     char * buf = execute(xquery, context_xml);
-    if (!buf) Py_RETURN_NONE; 
-    PyObject * ret = PyUnicode_DecodeUTF8(buf, strlen(buf), NULL);
-    free(buf);
-    return ret;
+    if (buf) {
+      PyObject * ret = PyUnicode_DecodeUTF8(buf, strlen(buf), NULL);
+      free(buf);
+      return ret;
+    }
+    Py_RETURN_NONE;
   }
 }
 
