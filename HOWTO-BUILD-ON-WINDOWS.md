@@ -1,4 +1,4 @@
-# Building modules on Windows/VC++2008EE
+# Building win32 modules on Windows/VC++2008EE
 
 (Tested on Windows7 x64)
 
@@ -86,7 +86,7 @@ build on Release mode:
     export INCLUDE_DIRS=$BASE_DIR'\xerces-c-3.1.1-x86-windows-vc-9.0\include,'$BASE_DIR'\xqilla\include'
     export LIBRARY_DIRS=$BASE_DIR'\xerces-c-3.1.1-x86-windows-vc-9.0\lib,'$BASE_DIR'\xqilla\build\windows\VC8\Win32\Release'
     export LIBRARIES="xerces-c_3,xqilla22"
-    /cygdrive/c/Python27/python.exe setup.py build
+    $PYTHON_HOME/python.exe setup.py build
     
     cp $CYGBASE_DIR/xerces-c-3.1.1-x86-windows-vc-9.0/bin/xerces-c_3_1.dll build/lib.win32-2.7/
     cp $CYGBASE_DIR/xqilla/build/windows/VC8/Win32/Release/xqilla22.dll build/lib.win32-2.7/

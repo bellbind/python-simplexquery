@@ -16,10 +16,14 @@ classifiers = """\
 Development Status :: 1 - Planning
 Intended Audience :: Developers
 License :: OSI Approved :: Apache Software License
+Operating System :: POSIX
+Operating System :: Microsoft :: Windows
+Operating System :: Unix
 Programming Language :: Python
+Programming Language :: Python :: 2
+Programming Language :: Python :: 3
 Topic :: Text Processing :: Markup :: XML
 Topic :: Software Development :: Libraries :: Python Modules
-Operating System :: Unix
 """
 try:
     from setuptools import setup, Extension
@@ -49,7 +53,7 @@ except:
 
 setup(
     name="python-simplexquery",
-    version="0.3",
+    version="0.4",
     
     author="bellbind",
     author_email="bellbind@gmail.com",
