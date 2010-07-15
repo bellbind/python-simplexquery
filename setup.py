@@ -42,14 +42,13 @@ try:
     import os
     for key in setting.keys():
         if key in os.environ:
-            setting[key] = filter(
-                None, (s.strip() for s in os.environ[key].split(",")))
+            setting[key] = list(filter(
+                None, (s.strip() for s in os.environ[key].split(","))))
             pass
         pass
     pass
 except:
     pass
-
 
 setup(
     name="python-simplexquery",
