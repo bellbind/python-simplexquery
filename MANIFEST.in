@@ -1,0 +1,4 @@
+include *.md
+include license.txt
+include build-on-unix.sh
+graft examples
