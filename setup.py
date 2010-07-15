@@ -1,12 +1,13 @@
 #!/usr/bin/env python
-"""simple native XQuery processing module using xqilla.
+"""A simple native XQuery processing module using xqilla.
 
-usage:
+Usage:
+
 >>> import simplexquery as sxq
 >>> sxq.execute(u"<body>{string(/user)}</body>", u"<user>Taro</user>")
 u'<body>Taro</body>'
 
-build requires: build env for xqilla c++ programs.
+Build requires: build env for xqilla c++ programs.
 - setup for ubuntu lucid:
     apt-get install libxqilla-dev libxerces-c2-dev
 """
@@ -52,7 +53,7 @@ except:
 
 setup(
     name="python-simplexquery",
-    version="0.4",
+    version="0.5",
     
     author="bellbind",
     author_email="bellbind@gmail.com",

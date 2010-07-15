@@ -38,6 +38,7 @@ download and extract xerces-c lib (vc9 version) in the directory:
 start Visual Studio:
 
 - open "C:\vc2008\xqilla\Win32Projects/VC8/XQilla.sln" file by menu "File -> Open -> Project and Solution"
+- convert it for Visual C++ 2008 project
 
 modify project environments:
 
@@ -75,11 +76,12 @@ build on Release mode:
 
 ## build python-simplexquery bdist
 
-(change the 3 vars for your environment)
+(change the 4 vars for your environment)
 
     BASE_DIR='C:\vc2008'
     CYGBASE_DIR=/cygdrive/c/vc2008
     PYTHON_HOME=/cygdrive/c/Python27
+    PYTHON_VER=2.7
     
     git clone git@github.com:bellbind/python-simplexquery.git
     cd python-simplexquery
@@ -88,7 +90,10 @@ build on Release mode:
     export LIBRARIES="xerces-c_3,xqilla22"
     $PYTHON_HOME/python.exe setup.py build
     
-    cp $CYGBASE_DIR/xerces-c-3.1.1-x86-windows-vc-9.0/bin/xerces-c_3_1.dll build/lib.win32-2.7/
-    cp $CYGBASE_DIR/xqilla/build/windows/VC8/Win32/Release/xqilla22.dll build/lib.win32-2.7/
+    cp $CYGBASE_DIR/xerces-c-3.1.1-x86-windows-vc-9.0/bin/xerces-c_3_1.dll build/lib.win32-$PYTHON_VER/
+    cp $CYGBASE_DIR/xerces-c-3.1.1-x86-windows-vc-9.0/LICENSE build/lib.win32-$PYTHON_VER/LICENSE-xerces-c.txt
+    cp $CYGBASE_DIR/xqilla/build/windows/VC8/Win32/Release/xqilla22.dll build/lib.win32-$PYTHON_VER/
+    cp $CYGBASE_DIR/xqilla/LICENSE build/lib.win32-$PYTHON_VER/LICENSE-xqilla.txt
     $PYTHON_HOME/python.exe setup.py bdist_wininst
     $PYTHON_HOME/python.exe setup.py bdist_msi
+
