@@ -7,8 +7,8 @@ typedef char * (* resolver_t)(void *, const char *);
 extern char * execute(const char *, const char *,
                       resolver_t, void *);
 extern int execute_all(const char *, const char *, 
-                       void (void *, const char *), void *,
-                       resolver_t, void *);
+                       resolver_t, void *,
+                       void (void *, const char *), void *);
 
 static void
 append_pylist(void * pylist, const char * buf) 
@@ -91,8 +91,9 @@ xquery_execute_all(PyObject * self, PyObject * args, PyObject* kwargs)
                                 &resolver, &resolver_func);
   if (ok) {
     PyObject * pylist = PyList_New(0);
-    int ret = execute_all(xquery, context_xml, &append_pylist, pylist,
-                          resolver_func, resolver);
+    int ret = execute_all(xquery, context_xml, 
+                          resolver_func, resolver,
+			  &append_pylist, pylist);
     if (ret) return pylist;
     Py_DECREF(pylist);
     PyErr_SetString(PyExc_ValueError, "invalid args");
