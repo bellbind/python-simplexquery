@@ -1,4 +1,4 @@
-include *.md
-include license.txt
+include README.md
 include build-on-unix.sh
 graft examples
+graft doc

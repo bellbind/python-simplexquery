@@ -53,7 +53,7 @@ except:
 
 setup(
     name="python-simplexquery",
-    version="0.5",
+    version="0.5.1",
     
     author="bellbind",
     author_email="bellbind@gmail.com",
