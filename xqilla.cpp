@@ -35,8 +35,8 @@ namespace {
       std::string xml(cxml);
       free(cxml);
       
-      XERCES_CPP_NAMESPACE::MemBufInputSource is((XMLByte *) xml.c_str(), 
-                                                 xml.length(), id);
+      XERCES_CPP_NAMESPACE::MemBufInputSource 
+      is(reinterpret_cast<const XMLByte *>(xml.c_str()), xml.length(), id);
       Node::Ptr doc = context->parseDocument(is);
       result.addItem(doc);
       return true;
@@ -111,8 +111,9 @@ namespace {
     void setup() {
       if (context_xml) {
         std::string xml(context_xml);
-        XERCES_CPP_NAMESPACE::MemBufInputSource is((XMLByte *) xml.c_str(), 
-                                                   xml.length(), "input");
+        XERCES_CPP_NAMESPACE::MemBufInputSource 
+	is(reinterpret_cast<const XMLByte *>(xml.c_str()), 
+	   xml.length(), ".");
         Node::Ptr doc = context->parseDocument(is);
         Sequence seq(doc);
         if (!seq.isEmpty() && seq.first()->isNode()) {
