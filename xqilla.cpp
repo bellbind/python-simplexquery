@@ -88,7 +88,7 @@ namespace {
       Item::Ptr item;
       while (item = result->next(context)) {
         std::string stdval(UTF8(item->asString(context)));
-        char * buf = (char *) malloc(stdval.length() + 1);
+        char * buf = reinterpret_cast<char *>(malloc(stdval.length() + 1));
         strcpy(buf, stdval.c_str());
         return buf;
       }
