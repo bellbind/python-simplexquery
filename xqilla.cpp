@@ -89,7 +89,7 @@ namespace {
       while (item = result->next(context)) {
         std::string stdval(UTF8(item->asString(context)));
         char * buf = reinterpret_cast<char *>(malloc(stdval.length() + 1));
-	if (buf == NULL) return NULL;
+        if (buf == NULL) return NULL;
         strcpy(buf, stdval.c_str());
         return buf;
       }
