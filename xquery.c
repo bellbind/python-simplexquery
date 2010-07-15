@@ -31,6 +31,7 @@ call_resolver(void * resolver, const char * uri)
   if (ok) {
     size_t len = strlen(cpret);
     char * ret = malloc(len + 1);
+    if (ret == NULL) return NULL; 
     strcpy(ret, cpret);
     return ret;    
   }
