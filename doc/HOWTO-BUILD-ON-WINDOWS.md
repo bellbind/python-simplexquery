@@ -88,8 +88,9 @@ build on Release mode:
     export INCLUDE_DIRS=$BASE_DIR'\xerces-c-3.1.1-x86-windows-vc-9.0\include,'$BASE_DIR'\xqilla\include'
     export LIBRARY_DIRS=$BASE_DIR'\xerces-c-3.1.1-x86-windows-vc-9.0\lib,'$BASE_DIR'\xqilla\build\windows\VC8\Win32\Release'
     export LIBRARIES="xerces-c_3,xqilla22"
-    $PYTHON_HOME/python.exe setup.py build
+    export EXTRA_COMPILE_ARGS="/EHsc"
     
+    $PYTHON_HOME/python.exe setup.py build
     cp $CYGBASE_DIR/xerces-c-3.1.1-x86-windows-vc-9.0/bin/xerces-c_3_1.dll build/lib.win32-$PYTHON_VER/
     cp $CYGBASE_DIR/xerces-c-3.1.1-x86-windows-vc-9.0/LICENSE build/lib.win32-$PYTHON_VER/LICENSE-xerces-c.txt
     cp $CYGBASE_DIR/xerces-c-3.1.1-x86-windows-vc-9.0/NOTICE build/lib.win32-$PYTHON_VER/NOTICE-xerces-c.txt

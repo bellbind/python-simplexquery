@@ -13,6 +13,13 @@ extern void (* get_free())(void *);
 
 }
 
+void * ::operator new (size_t size) {
+  return get_malloc()(size);
+}
+void ::operator delete(void * p) {
+  get_free()(p);
+}
+
 namespace {
     XERCES_CPP_NAMESPACE_USE
     // use external memory management
@@ -111,13 +118,12 @@ namespace {
             memory_manager(_memory_manager), 
             xquery(_xquery), context_xml(_context_xml), 
             resolver(_resolver), resolver_arg(_resolver_arg),
-            xqilla(memory_manager), query(xqilla.parse(X(xquery))), 
-            context(query->createDynamicContext()),
+            xqilla(memory_manager), query(NULL), context(NULL),
             uri_resolver(resolver, resolver_arg) {
-            setup();
         }
         
         char * execute() {
+            setup();
             Result result = query->execute(context);
             
             Item::Ptr item;
@@ -134,6 +140,7 @@ namespace {
         
         int execute_all(void (* callback)(void *, const char *), 
                         void * callback_arg) {
+            setup();
             Result result = query->execute(context);
             
             Item::Ptr item;
@@ -146,6 +153,8 @@ namespace {
     
     private:
         void setup() {
+            query.set(xqilla.parse(X(xquery)));
+            context.set(query->createDynamicContext());
             if (context_xml) {
                 std::string xml(context_xml);
                 MemBufInputSource is(
@@ -172,12 +181,14 @@ extern char *
 execute(const char * xquery, const char * context_xml,
         char * (* resolver)(void *, const char *), void * resolver_arg)
 {
+    Executor executor(&memory_manager, xquery, context_xml, resolver, resolver_arg);
     try {
-        Executor executor(&memory_manager, xquery, context_xml, resolver, resolver_arg);
         return executor.execute();
-    } catch (XQException ex) {
-        ;
-    } catch (...) {}
+    } catch (XQException & ex) {
+        //std::cout << UTF8(ex.getError()) << std::endl;
+    } catch (...) {
+        //std::cout << "ex" << std::endl;
+    }
     return NULL;
 }
 
@@ -187,12 +198,14 @@ execute_all(const char * xquery, const char * context_xml,
             void * resolver_arg,
             void (* callback)(void *, const char *), void * callback_arg)
 {
+    Executor executor(&memory_manager, xquery, context_xml, resolver, resolver_arg);
     try {
-        Executor executor(&memory_manager, xquery, context_xml, resolver, resolver_arg);
         return executor.execute_all(callback, callback_arg);
-    } catch (XQException ex) {
-        ;
-    } catch (...) {}
+    } catch (XQException & ex) {
+        //std::cout << UTF8(ex.getError()) << std::endl;
+    } catch (...) {
+        //std::cout << "ex" << std::endl;
+    }
     return 0;
 }
 

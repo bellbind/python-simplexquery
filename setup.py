@@ -37,6 +37,7 @@ setting = {
     "LIBRARIES": ["xqilla", "xerces-c"],
     "LIBRARY_DIRS": [],
     "INCLUDE_DIRS": [],
+    "EXTRA_COMPILE_ARGS": [],
     }
 
 try:
@@ -53,7 +54,7 @@ except:
 
 setup(
     name="python-simplexquery",
-    version="0.8",
+    version="0.9",
     
     author="bellbind",
     author_email="bellbind@gmail.com",
@@ -72,5 +73,6 @@ setup(
             libraries=setting["LIBRARIES"],
             library_dirs=setting["LIBRARY_DIRS"],
             include_dirs=setting["INCLUDE_DIRS"],
+            extra_compile_args=setting["EXTRA_COMPILE_ARGS"],
             )
         ])
