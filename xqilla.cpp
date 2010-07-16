@@ -16,18 +16,15 @@ extern void (* get_free())(void *);
 namespace {
     XERCES_CPP_NAMESPACE_USE
     // use external memory management
-    void * operator new(size_t size) {
-        return get_malloc()(size);
-    }
-    void operator delete(void * obj) {
-        get_free()(obj);
-    }
     class CustomMemoryManager : public MemoryManager {
     public:
         virtual MemoryManager* getExceptionMemoryManager() {
             return this;
         }
         virtual void * allocate(XMLSize_t size) {
+            return get_malloc()(size);
+        }
+        virtual void * allocate(size_t size) {
             return get_malloc()(size);
         }
         virtual void deallocate(void* p) {

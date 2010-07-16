@@ -9,11 +9,11 @@ extern int execute_all(
     const char *, const char *, resolver_t, void *,
     void (void *, const char *), void *);
 
-extern void * (* get_malloc())(size_t)
+extern void * (* get_malloc(void))(size_t) 
 {
   return &PyMem_Malloc;
 }
-extern void (* get_free())(void *)
+extern void (* get_free(void))(void *)
 {
   return &PyMem_Free;
 }
