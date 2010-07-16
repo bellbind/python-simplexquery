@@ -1,5 +1,4 @@
 #include <Python.h> /* it must include Python.h at first */
-#include <stdlib.h>
 #include <string.h>
 
 typedef char * (* resolver_t)(void *, const char *);
@@ -9,6 +8,16 @@ extern char * execute(
 extern int execute_all(
     const char *, const char *, resolver_t, void *,
     void (void *, const char *), void *);
+
+extern void * (* get_malloc())(size_t)
+{
+  return &PyMem_Malloc;
+}
+extern void (* get_free())(void *)
+{
+  return &PyMem_Free;
+}
+
 
 static void
 append_pylist(void * pylist, const char * buf) 
@@ -32,8 +41,8 @@ call_resolver(void * resolver, const char * uri)
     char * retstr = NULL;
     if (ok) {
         size_t len = strlen(cpret);
-        retstr = malloc(len + 1);
-        if (retstr != NULL) strcpy(retstr, cpret);
+        retstr = get_malloc()(len + 1);
+        if (retstr != NULL) memcpy(retstr, cpret, len + 1);
     }
     Py_XDECREF(rets);
     Py_XDECREF(strret);
@@ -77,7 +86,7 @@ xquery_execute(PyObject * self, PyObject * args, PyObject * kwargs)
             xquery, context_xml, resolver_func, resolver);
         if (buf) {
             PyObject * ret = PyUnicode_DecodeUTF8(buf, strlen(buf), NULL);
-            free(buf);
+            get_free()(buf);
             return ret;
         }
     }
