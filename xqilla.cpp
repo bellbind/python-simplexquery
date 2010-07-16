@@ -13,10 +13,10 @@ extern void (* get_free())(void *);
 
 }
 
-void * ::operator new (size_t size) {
+void * operator new (size_t size) {
   return get_malloc()(size);
 }
-void ::operator delete(void * p) {
+void operator delete(void * p) {
   get_free()(p);
 }
 
