@@ -1,17 +1,19 @@
 # python-simplexquery
 
-simple native XQuery processing module using xqilla.
+A simple native XQuery processing module using xqilla.
 
 ## Usage
 
     import simplexquery as sxq
     print(sxq.execute("<body>{string(/user)}</body>", "<user>Taro</user>"))
 
-see example.py
+For more details, see examples/example.py
 
 ## Install by easy_install
 
    easy_install python-simplexquery
+
+You can install on both Python3.x and Python2.x
 
 ### Requires for build
 
@@ -29,10 +31,13 @@ for ubuntu lucid
 
 ## for Windows
 
-download from [github download](http://github.com/bellbind/python-simplexquery/downloads)
+You can download wininst exes from 
+[github download](http://github.com/bellbind/python-simplexquery/downloads)
+
+For building yourself, see doc/HOWTO-BUILD-ON-WINDOWS.md
 
 ## Resources
 
-- [PyPI page](http://pypi.python.org/pypi/python-simplexquery)
+- [PyPI python-simplexquery](http://pypi.python.org/pypi/python-simplexquery)
 - [XQilla Home](http://xqilla.sourceforge.net/HomePage)
 - [W3C XML XQuery](http://www.w3.org/XML/Query/)

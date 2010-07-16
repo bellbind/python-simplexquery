@@ -113,7 +113,7 @@ namespace {
       if (context_xml) {
         std::string xml(context_xml);
         XERCES_CPP_NAMESPACE::MemBufInputSource 
-	is(reinterpret_cast<const XMLByte *>(xml.c_str()), 
+        is(reinterpret_cast<const XMLByte *>(xml.c_str()), 
 	   xml.length(), ".");
         Node::Ptr doc = context->parseDocument(is);
         Sequence seq(doc);
@@ -142,7 +142,7 @@ extern "C" {
       return executor.execute();
     } catch (XQException ex) {
       ;
-    }
+    } catch (...) {}
     return NULL;
   }
 
@@ -157,7 +157,7 @@ extern "C" {
       return executor.execute_all(callback, callback_arg);
     } catch (XQException ex) {
       ;
-    }
+    } catch (...) {}
     return 0;
   }
 }

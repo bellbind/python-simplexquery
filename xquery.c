@@ -16,6 +16,7 @@ append_pylist(void * pylist, const char * buf)
   PyObject * list = pylist;
   PyObject * ret = PyUnicode_DecodeUTF8(buf, strlen(buf), NULL);
   PyList_Append(list, ret);
+  Py_XDECREF(ret);
 }
 
 static char *
@@ -28,14 +29,17 @@ call_resolver(void * resolver, const char * uri)
   PyObject * rets = PyTuple_Pack(1, strret);
   char * cpret = NULL;
   int ok = PyArg_ParseTuple(rets, "es", "utf-8", &cpret);
+  char * retstr = NULL;
   if (ok) {
     size_t len = strlen(cpret);
-    char * ret = malloc(len + 1);
-    if (ret == NULL) return NULL; 
-    strcpy(ret, cpret);
-    return ret;    
+    retstr = malloc(len + 1);
+    if (retstr != NULL) strcpy(retstr, cpret);
   }
-  return NULL;
+  Py_XDECREF(rets);
+  Py_XDECREF(strret);
+  Py_XDECREF(args);
+  Py_XDECREF(uniuri);
+  return retstr;
 }
 
 static int
@@ -48,10 +52,9 @@ execute_parse_params(PyObject * args, PyObject * kwargs,
                                        "utf-8", pxquery, 
                                        "utf-8", pcontext_xml,
                                        presolver);
-  if (!ok) {
-    return 0;
-  }
+  if (!ok) return 0;
   if (*presolver) {
+    if (!PyCallable_Check(*presolver)) return 0;
     *presolver_func = &call_resolver;
   }
   return 1;
@@ -94,9 +97,9 @@ xquery_execute_all(PyObject * self, PyObject * args, PyObject* kwargs)
     PyObject * pylist = PyList_New(0);
     int ret = execute_all(xquery, context_xml, 
                           resolver_func, resolver,
-			  &append_pylist, pylist);
+                          &append_pylist, pylist);
     if (ret) return pylist;
-    Py_DECREF(pylist);
+    Py_XDECREF(pylist);
     PyErr_SetString(PyExc_ValueError, "invalid args");
   }
   return NULL;  
