@@ -102,8 +102,8 @@ xquery_execute_all(PyObject * self, PyObject * args, PyObject* kwargs)
             &append_pylist, pylist);
         if (ret) return pylist;
         Py_XDECREF(pylist);
-        PyErr_SetString(PyExc_ValueError, "invalid args");
     }
+    PyErr_SetString(PyExc_ValueError, "invalid args");
     return NULL;  
 }
 
