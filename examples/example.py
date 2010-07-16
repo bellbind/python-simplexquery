@@ -39,3 +39,7 @@ def resolver(uri):
     print(uri)
     return "<name>Jiro</name>"
 print(sxq.execute_all('doc("foo.xml")/name', resolver=resolver))
+
+print(sxq.execute('<body>{doc(/root/@href)/name}</body>', 
+                  "<root href='/bar.xml'/>", 
+                  lambda uri: "<name>%s</name>" % uri))
