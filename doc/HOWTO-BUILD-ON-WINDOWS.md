@@ -92,6 +92,7 @@ build on Release mode:
     
     cp $CYGBASE_DIR/xerces-c-3.1.1-x86-windows-vc-9.0/bin/xerces-c_3_1.dll build/lib.win32-$PYTHON_VER/
     cp $CYGBASE_DIR/xerces-c-3.1.1-x86-windows-vc-9.0/LICENSE build/lib.win32-$PYTHON_VER/LICENSE-xerces-c.txt
+    cp $CYGBASE_DIR/xerces-c-3.1.1-x86-windows-vc-9.0/NOTICE build/lib.win32-$PYTHON_VER/NOTICE-xerces-c.txt
     cp $CYGBASE_DIR/xqilla/build/windows/VC8/Win32/Release/xqilla22.dll build/lib.win32-$PYTHON_VER/
     cp $CYGBASE_DIR/xqilla/LICENSE build/lib.win32-$PYTHON_VER/LICENSE-xqilla.txt
     $PYTHON_HOME/python.exe setup.py bdist_wininst
