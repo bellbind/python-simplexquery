@@ -83,7 +83,7 @@ build on Release mode:
     PYTHON_HOME=/cygdrive/c/Python27
     PYTHON_VER=2.7
     
-    git clone git@github.com:bellbind/python-simplexquery.git
+    git clone git://github.com/bellbind/python-simplexquery.git
     cd python-simplexquery
     export INCLUDE_DIRS=$BASE_DIR'\xerces-c-3.1.1-x86-windows-vc-9.0\include,'$BASE_DIR'\xqilla\include'
     export LIBRARY_DIRS=$BASE_DIR'\xerces-c-3.1.1-x86-windows-vc-9.0\lib,'$BASE_DIR'\xqilla\build\windows\VC8\Win32\Release'
