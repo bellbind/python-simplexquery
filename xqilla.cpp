@@ -13,11 +13,11 @@ extern void (* get_free())(void *);
 
 }
 
-void * operator new (size_t size) {
-  return get_malloc()(size);
+void * operator new(size_t size) {
+    return get_malloc()(size);
 }
 void operator delete(void * p) {
-  get_free()(p);
+    get_free()(p);
 }
 
 namespace {
@@ -181,7 +181,8 @@ extern char *
 execute(const char * xquery, const char * context_xml,
         char * (* resolver)(void *, const char *), void * resolver_arg)
 {
-    Executor executor(&memory_manager, xquery, context_xml, resolver, resolver_arg);
+    Executor executor(
+        &memory_manager, xquery, context_xml, resolver, resolver_arg);
     try {
         return executor.execute();
     } catch (XQException & ex) {
@@ -198,7 +199,8 @@ execute_all(const char * xquery, const char * context_xml,
             void * resolver_arg,
             void (* callback)(void *, const char *), void * callback_arg)
 {
-    Executor executor(&memory_manager, xquery, context_xml, resolver, resolver_arg);
+    Executor executor(
+        &memory_manager, xquery, context_xml, resolver, resolver_arg);
     try {
         return executor.execute_all(callback, callback_arg);
     } catch (XQException & ex) {

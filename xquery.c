@@ -11,11 +11,11 @@ extern int execute_all(
 
 extern void * (* get_malloc(void))(size_t) 
 {
-  return &PyMem_Malloc;
+    return &PyMem_Malloc;
 }
 extern void (* get_free(void))(void *)
 {
-  return &PyMem_Free;
+    return &PyMem_Free;
 }
 
 
