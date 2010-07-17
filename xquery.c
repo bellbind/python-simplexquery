@@ -119,10 +119,10 @@ xquery_execute_all(PyObject * self, PyObject * args, PyObject* kwargs)
             xquery, context_xml, resolver_func, resolver,
             &append_pylist, pylist,
             &error_message);
-        PyObject * error = PyErr_Occurred();
         if (ret) return pylist;
-        if (!error) {
-            PyErr_SetString(PyExc_ValueError, error_message);
+        {
+            PyObject * error = PyErr_Occurred();
+            if (!error) PyErr_SetString(PyExc_ValueError, error_message);
         }
         get_free()(error_message);
         Py_XDECREF(pylist);

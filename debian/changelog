@@ -1,4 +1,4 @@
-python-simplexquery (1.0-nmu1) unstable; urgency=low
+python-simplexquery (1.0.1-0nmu1) unstable; urgency=low
 
   * NMU debbian/* for local package
 
