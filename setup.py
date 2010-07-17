@@ -63,7 +63,7 @@ setup(
     license="http://www.apache.org/licenses/LICENSE-2.0",
     description=doclines[0],
     long_description="\n".join(doclines[2:]),
-    classifiers=filter(None, classifiers.split("\n")),
+    classifiers=list(filter(None, classifiers.split("\n"))),
     
     ext_modules=[
         Extension(
