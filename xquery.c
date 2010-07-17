@@ -7,7 +7,8 @@ extern char * execute(
     const char *, const char *, resolver_t, void *);
 extern int execute_all(
     const char *, const char *, resolver_t, void *,
-    void (void *, const char *), void *);
+    void (void *, const char *), void *,
+    char **);
 
 extern void * (* get_malloc(void))(size_t) 
 {
@@ -35,16 +36,18 @@ call_resolver(void * resolver, const char * uri)
     PyObject * uniuri = PyUnicode_DecodeUTF8(uri, strlen(uri), NULL);
     PyObject * args = PyTuple_Pack(1, uniuri);
     PyObject * strret = PyObject_CallObject(callable, args);
-    PyObject * rets = PyTuple_Pack(1, strret);
-    char * cpret = NULL;
-    int ok = PyArg_ParseTuple(rets, "es", "utf-8", &cpret);
     char * retstr = NULL;
-    if (ok) {
-        size_t len = strlen(cpret);
-        retstr = get_malloc()(len + 1);
-        if (retstr != NULL) memcpy(retstr, cpret, len + 1);
-    }
-    Py_XDECREF(rets);
+    if (strret) {
+        PyObject * rets = PyTuple_Pack(1, strret);
+        char * cpret = NULL;
+        int ok = PyArg_ParseTuple(rets, "es", "utf-8", &cpret);
+        if (ok) {
+            size_t len = strlen(cpret);
+            retstr = get_malloc()(len + 1);
+            if (retstr != NULL) memcpy(retstr, cpret, len + 1);
+        }
+        Py_XDECREF(rets);
+    } 
     Py_XDECREF(strret);
     Py_XDECREF(args);
     Py_XDECREF(uniuri);
@@ -65,7 +68,11 @@ execute_parse_params(
         presolver);
     if (!ok) return 0;
     if (*presolver) {
-        if (!PyCallable_Check(*presolver)) return 0;
+        if (!PyCallable_Check(*presolver)) {
+            PyErr_SetString(
+                PyExc_TypeError, "resolver should be callable");
+            return 0;
+        }
         *presolver_func = &call_resolver;
     }
     return 1;
@@ -90,6 +97,7 @@ xquery_execute(PyObject * self, PyObject * args, PyObject * kwargs)
             return ret;
         }
     }
+    PyErr_Clear();
     Py_RETURN_NONE;
 }
 
@@ -101,6 +109,7 @@ xquery_execute_all(PyObject * self, PyObject * args, PyObject* kwargs)
     char * context_xml = NULL;
     PyObject * resolver = NULL;
     resolver_t resolver_func = NULL;
+    char * error_message = NULL;
     int ok = execute_parse_params(
         args, kwargs,
         &xquery, &context_xml, &resolver, &resolver_func);
@@ -108,11 +117,16 @@ xquery_execute_all(PyObject * self, PyObject * args, PyObject* kwargs)
         PyObject * pylist = PyList_New(0);
         int ret = execute_all(
             xquery, context_xml, resolver_func, resolver,
-            &append_pylist, pylist);
+            &append_pylist, pylist,
+            &error_message);
+        PyObject * error = PyErr_Occurred();
         if (ret) return pylist;
+        if (!error) {
+            PyErr_SetString(PyExc_ValueError, error_message);
+        }
+        get_free()(error_message);
         Py_XDECREF(pylist);
     }
-    PyErr_SetString(PyExc_ValueError, "invalid args");
     return NULL;  
 }
 

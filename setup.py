@@ -7,14 +7,13 @@ Usage:
 >>> sxq.execute(u"<body>{string(/user)}</body>", u"<user>Taro</user>")
 u'<body>Taro</body>'
 
-Build requires: build env for xqilla c++ programs.
-- setup for ubuntu lucid:
-    apt-get install libxqilla-dev libxerces-c2-dev
+For more detail, see `README.md
+<http://github.com/bellbind/python-simplexquery/blob/master/README.md>`_
 """
 doclines = __doc__.split("\n")
 
 classifiers = """\
-Development Status :: 1 - Planning
+Development Status :: 5 - Production/Stable
 Intended Audience :: Developers
 License :: OSI Approved :: Apache Software License
 Operating System :: POSIX
@@ -54,7 +53,7 @@ except:
 
 setup(
     name="python-simplexquery",
-    version="0.9",
+    version="1.0",
     
     author="bellbind",
     author_email="bellbind@gmail.com",

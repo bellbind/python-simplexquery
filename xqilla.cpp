@@ -40,6 +40,15 @@ namespace {
     };
     CustomMemoryManager memory_manager;
     
+    char * alloc_strbuf(std::string stdval) 
+    {
+        char * buf = reinterpret_cast<char *>(
+            get_malloc()(stdval.length() + 1));
+        if (buf == NULL) return NULL;
+        memcpy(buf, stdval.c_str(), stdval.length() + 1);
+        return buf;
+    }
+    
     // URIResolver for invoking callback Python callable
     class CallbackURIResolver : public URIResolver 
     {
@@ -65,6 +74,7 @@ namespace {
                     url.getURLText());
             }
             std::string stduri(UTF8(url.getURLText()));
+            
             char * cxml = callback(callback_arg, stduri.c_str());
             if (!cxml) return false;
             std::string xml(cxml);
@@ -129,11 +139,7 @@ namespace {
             Item::Ptr item;
             while (item = result->next(context)) {
                 std::string stdval(UTF8(item->asString(context)));
-                char * buf = reinterpret_cast<char *>(
-                    get_malloc()(stdval.length() + 1));
-                if (buf == NULL) return NULL;
-                memcpy(buf, stdval.c_str(), stdval.length() + 1);
-                return buf;
+                return alloc_strbuf(stdval);
             }
             return NULL;
         }
@@ -197,16 +203,27 @@ extern int
 execute_all(const char * xquery, const char * context_xml, 
             char * (* resolver)(void *, const char *), 
             void * resolver_arg,
-            void (* callback)(void *, const char *), void * callback_arg)
+            void (* callback)(void *, const char *), void * callback_arg,
+            char ** error_out)
 {
     Executor executor(
         &memory_manager, xquery, context_xml, resolver, resolver_arg);
     try {
-        return executor.execute_all(callback, callback_arg);
-    } catch (XQException & ex) {
-        //std::cout << UTF8(ex.getError()) << std::endl;
+        try {
+            return executor.execute_all(callback, callback_arg);
+        } catch (XQException & ex) {
+            //std::cout << UTF8(ex.getError()) << std::endl;
+            if (error_out) {
+                std::string stdval(UTF8(ex.getError()));
+                *error_out = alloc_strbuf(stdval);
+            }
+        }
     } catch (...) {
         //std::cout << "ex" << std::endl;
+        if (error_out) {
+            std::string stdval("unknown C++ exception");
+            *error_out = alloc_strbuf(stdval);
+        }
     }
     return 0;
 }

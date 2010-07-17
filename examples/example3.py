@@ -1,46 +1,91 @@
 import simplexquery as sxq
 
 
-tpl = """
-<html>
-<body>
-<h1>
-{ string(/author/name) }
-</h1>
-</body>
-</html>
-"""
-xml = """
-<author>
-  <name>Taro</name>
-</author>
-"""
-print(sxq.execute(tpl, xml))
+print("""
+['execute' xquery code]\
+""")
+print((sxq.execute("""<user>{"Taro"}</user>""")))
 
-print(sxq.execute("""<user>{"Taro"}</user>"""))
+print("""
+['execute' xquery code with context xml]\
+""")
+print((sxq.execute("<html><body>{string(/author/name)}</body></html>",
+                  "<author><name>Taro</name></author>")))
 
-# return None if wrong args 
-print(sxq.execute("<user>")) 
-print(sxq.execute("<user>{string(/name)}</user>", "<name>Taro<name>")) 
+print("""
+['execute' xquery code with uri -> xml resolver callback]\
+""")
+print((sxq.execute('<body>{doc(/root/@href)/name}</body>', 
+                  "<root href='/bar.xml'/>", 
+                  lambda uri: "<name>%s</name>" % uri)))
+
+class Resolver(object):
+    def __call__(self, uri):
+        print(uri)
+        return "<name>Jiro</name>"
+    pass
+print((sxq.execute('doc("foo.xml")/name', resolver=Resolver())))
+
+print("""
+['execute' returns None if fails by anyway]\
+""")
+print((sxq.execute("<user>"))) 
+print((sxq.execute("<user>{string(/name)}</user>", "<name>Taro<name>"))) 
 
 
-# multiple results
-print(repr(sxq.execute_all("/user/name",
-                           "<user><name>Taro</name><name>Jiro</name></user>")))
-# raise ValueError if wrong args
+
+print("""
+['execute_all' returns a list of multiple results]\
+""")
+print((repr(sxq.execute_all("/user/name",
+                           "<user><name>Taro</name><name>Jiro</name></user>"))))
+
+print("""
+['execute_all' raise ValueError if xquery execution is failed]\
+""")
 try:
     sxq.execute_all("/user'")
     pass
 except ValueError as ex:
     print(ex)
     pass
+try:
+    sxq.execute_all('doc("foo.xml")/name', resolver=lambda uri : "non xml")
+    pass
+except ValueError as ex:
+    print(ex)
+    pass
 
-def resolver(uri):
-    print(uri)
-    return "<name>Jiro</name>"
-print(sxq.execute_all('doc("foo.xml")/name', resolver=resolver))
+print("""
+['execute_all' raise TypeError if arg has invalid type]\
+""")
+try:
+    sxq.execute_all(0)
+    pass
+except TypeError as ex:
+    print(ex)
+    pass
+try:
+    sxq.execute_all("", "", 0)
+    pass
+except TypeError as ex:
+    print(ex)
+    pass
 
-print(sxq.execute('<body>{doc(/root/@href)/name}</body>', 
-                  "<root href='/bar.xml'/>", 
-                  lambda uri: "<name>%s</name>" % uri))
+try:
+    sxq.execute_all('doc("foo.xml")/name', resolver=lambda : "abc")
+    pass
+except TypeError as ex:
+    print(ex)
+    pass
+try:
+    sxq.execute_all('doc("foo.xml")/name', resolver=lambda a : None)
+    pass
+except TypeError as ex:
+    print(ex)
+    pass
 
+
+print("""
+[end]\
+""")
