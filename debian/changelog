@@ -1,0 +1,5 @@
+python-simplexquery (1.0-nmu1) unstable; urgency=low
+
+  * NMU debbian/* for local package
+
+ -- ichiyama ryoichi <bellbindp@gmail.com>  Sat, 17 Jul 2010 18:22:50 +0900

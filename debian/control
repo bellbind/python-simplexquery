@@ -1,0 +1,23 @@
+Source: python-simplexquery
+Section: python
+Priority: extra
+Maintainer: ichiyama ryoichi <bellbind@gmail.com>
+Build-Depends: cdbs, debhelper (>= 7),  python-support, libxqilla-dev, 
+ python2.6-dev, libxerces-c2-dev
+Standards-Version: 3.8.4
+Homepage: http://github.com/bellbind/python-simplexquery
+
+Package: python-simplexquery
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, libxqilla3, 
+Description: A simple native XQuery processing module using xqilla.
+ Usage:
+ .
+      import simplexquery as sxq
+      print(sxq.execute("<body>{string(/user)}</body>", "<user>Taro</user>"))
+ .
+ This module is designed for using XQuery on python easily, so the module:
+ . 
+   - only provides stateless functions which only use python builtins objects
+   - ...
+
