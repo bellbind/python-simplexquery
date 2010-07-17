@@ -2,4 +2,3 @@ include README.md
 graft debian
 graft doc
 graft examples
-graft test
