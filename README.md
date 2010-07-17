@@ -24,6 +24,7 @@ You can install on both Python3.x and Python2.x
 
 ### Requires for build
 
+- python (2.x, 3.x)
 - xqilla (2.0.0 - 2.2.4)
 - xerces-c (2.8.x, 3.1.x)
 
@@ -38,19 +39,28 @@ for ubuntu lucid:
 
 ## for Windows
 
-You can download wininst exes from 
+You can download stable installer exes from PyPI page.
+
+More new versions may be avaiable from 
 [github download](http://github.com/bellbind/python-simplexquery/downloads)
 
-For building yourself, see 
+For building modules yourself, see 
 [doc/HOWTO-BUILD-ON-WINDOWS.md](http://github.com/bellbind/python-simplexquery/blob/master/doc/HOWTO-BUILD-ON-WINDOWS.md)
 
 ## Concept of the module
 
 This module is designed for using XQuery on python easily, so the module:
 
-- only provides stateless functions which only use standard python objects
+- only provides stateless functions which only use python builtins objects
 - will not support external functions by python callable 
-  because the values of XQuery function are based on DOM
+  because the values handled by XQuery function are based on DOM
+- is aimed for a comprehensible example for native modules with: 
+  multi python version, 
+  closs platform with warningless code, 
+  module with external c++ libraries, 
+  well managed resources (memory alloc, reference count, exceptions),
+  packaging strategy for every platform,
+  distribution for source and package
 
 ## Resources
 
