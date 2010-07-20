@@ -22,3 +22,5 @@
 
 ## Tips
 
+- you can add debian/changelog by "dch -v 1.0.1-0mnu1"
+- git tag with message by 'git tag v1.0.1 -m "http://pypi.python.org/pypi/python-simplexquery/1.0.1"'

@@ -37,9 +37,10 @@ for ubuntu lucid:
 
     python setup.py bdist_egg
 
-## for Windows
+## For Windows
 
-You can download stable installer exes from PyPI page.
+You can download stable installer exes from 
+[PyPI python-simplexquery](http://pypi.python.org/pypi/python-simplexquery).
 
 More new versions may be avaiable from 
 [github download](http://github.com/bellbind/python-simplexquery/downloads)
