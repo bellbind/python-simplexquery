@@ -215,17 +215,17 @@ execute_all(const char * xquery, const char * context_xml,
         try {
             return executor.execute_all(callback, callback_arg);
         } catch (XQException & ex) {
-            //std::cout << UTF8(ex.getError()) << std::endl;
             if (error_out) {
-                //std::string stdval(UTF8(ex.getError()));
                 std::ostringstream message;
-                message << "<" << UTF8(ex.getType()) << ">[" <<
-                    UTF8(ex.getXQueryFile()) << 
+                message << "<" << UTF8(ex.getType()) << ">" <<
+                    "[" << UTF8(ex.getXQueryFile()) << 
                     ":" << ex.getXQueryLine() <<
-                    ":" << ex.getXQueryColumn() << "](" <<
-                    UTF8(ex.getCppFunction()) << 
+                    ":" << ex.getXQueryColumn() << "]" <<
+#ifdef DEBUG
+                    "(" << UTF8(ex.getCppFunction()) << 
                     "|" << ex.getCppFile() <<
                     ":" << ex.getCppLine() << ")" <<
+#endif
                     " " << UTF8(ex.getError()) ;
                 std::string stdval = message.str();
                 *error_out = alloc_strbuf(stdval);
