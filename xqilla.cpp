@@ -1,5 +1,6 @@
 //#include <iostream>
 #include <cstring>
+#include <sstream>
 #include <xqilla/xqilla-simple.hpp>
 #include <xqilla/context/URIResolver.hpp>
 #include <xercesc/framework/MemBufInputSource.hpp>
@@ -67,13 +68,15 @@ namespace {
         resolveDocument(Sequence & result, const XMLCh * uri, 
                         DynamicContext * context, 
                         const QueryPathNode * projection) {
+            //std::cout << UTF8(uri) << std::endl;
+            //std::cout << UTF8(context->getBaseURI()) << std::endl;
             const XMLCh * id = uri;
             XMLURL url(context->getMemoryManager());
             if (url.setURL(context->getBaseURI(), uri, url)) {
                 id = context->getMemoryManager()->getPooledString(
                     url.getURLText());
             }
-            std::string stduri(UTF8(url.getURLText()));
+            std::string stduri(UTF8(id));
             
             char * cxml = callback(callback_arg, stduri.c_str());
             if (!cxml) return false;
@@ -214,7 +217,17 @@ execute_all(const char * xquery, const char * context_xml,
         } catch (XQException & ex) {
             //std::cout << UTF8(ex.getError()) << std::endl;
             if (error_out) {
-                std::string stdval(UTF8(ex.getError()));
+                //std::string stdval(UTF8(ex.getError()));
+                std::ostringstream message;
+                message << "<" << UTF8(ex.getType()) << ">[" <<
+                    UTF8(ex.getXQueryFile()) << 
+                    ":" << ex.getXQueryLine() <<
+                    ":" << ex.getXQueryColumn() << "](" <<
+                    UTF8(ex.getCppFunction()) << 
+                    "|" << ex.getCppFile() <<
+                    ":" << ex.getCppLine() << ")" <<
+                    " " << UTF8(ex.getError()) ;
+                std::string stdval = message.str();
                 *error_out = alloc_strbuf(stdval);
             }
         }
