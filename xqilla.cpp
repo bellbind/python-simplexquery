@@ -29,12 +29,15 @@ namespace {
         virtual MemoryManager* getExceptionMemoryManager() {
             return this;
         }
+#if XERCES_VERSION_MAJOR >= 3
         virtual void * allocate(XMLSize_t size) {
             return get_malloc()(size);
         }
+#else
         virtual void * allocate(size_t size) {
             return get_malloc()(size);
         }
+#endif
         virtual void deallocate(void* p) {
             get_free()(p);
         }
