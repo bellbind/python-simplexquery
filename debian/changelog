@@ -1,4 +1,10 @@
-python-simplexquery (1.0.2-0mnu1) lucid; urgency=low
+python-simplexquery (1.0.3-0nmu1) lucid; urgency=low
+
+  * support build on amd64 systems
+
+ -- bellbind <bellbind@gmail.com>  Wed, 21 Jul 2010 23:02:09 +0900
+
+python-simplexquery (1.0.2-0nmu1) lucid; urgency=low
 
   * change error message by XQilla exceptions more detailed  
 
