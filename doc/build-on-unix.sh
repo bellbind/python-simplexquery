@@ -10,12 +10,14 @@ else
   EXT=so
 fi
 
-PYTHON_CONFIG=python-config
+PYTHON_CONFIG=python3-config
 # apt-get install libxqilla-dev libxerces-c2-dev
-g++ -W -Wall -Wno-unused-parameter -fPIC \
+g++ -W -Wall -Wno-unused-parameter -Werror -fPIC \
     -c xqilla.cpp -o xqilla.o
-gcc -std=c89 -W -Wall -Wno-unused-parameter -fPIC `$PYTHON_CONFIG --cflags` \
+gcc -std=c89 -W -Wall -Wno-unused-parameter -Werror -fPIC \
+    `$PYTHON_CONFIG --cflags` \
     -c xquery.c -o xquery.o
-g++ -W -Wall `$PYTHON_CONFIG --ldflags` -lxerces-c -lxqilla -shared \
+g++ -shared -W -Wall -Werror `$PYTHON_CONFIG --ldflags` \
+    -lxerces-c -lxqilla \
     -o simplexquery.$EXT xqilla.o xquery.o 
 rm xqilla.o xquery.o

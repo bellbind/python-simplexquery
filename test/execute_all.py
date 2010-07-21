@@ -7,8 +7,8 @@ class execute_all(unittest.TestCase):
             "data(/user/name)",
             "<user><name>Taro</name><name>Jiro</name></user>")
         expects = ["Taro", "Jiro"]
-        for result, expected in zip(results, expects):
-            t.assertEqual(result, expected)
+        for index, expected in enumerate(expects):
+            t.assertEqual(results[index], expected)
             pass
         pass
     
