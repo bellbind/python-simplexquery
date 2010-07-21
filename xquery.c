@@ -145,11 +145,16 @@ static PyMethodDef  XQueryMethods[] = {
 #if PY_MAJOR_VERSION >= 3
 
 static struct PyModuleDef XQueryModule = {
-    PyModuleDef_HEAD_INIT,
+    {PyObject_HEAD_INIT(NULL)
+     NULL, 0, NULL}, /* avoid warning for PyModuleDef_HEAD_INIT, */
     "simplexquery",
     NULL,
     -1,
-    XQueryMethods
+    XQueryMethods,
+    NULL,
+    NULL,
+    NULL,
+    NULL
 };
 
 PyMODINIT_FUNC

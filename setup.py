@@ -43,8 +43,7 @@ try:
     import os
     for key in setting.keys():
         if key in os.environ:
-            setting[key] = list(filter(
-                None, (s.strip() for s in os.environ[key].split(","))))
+            setting[key] = [s.strip() for s in os.environ[key].split(",") if s]
             pass
         pass
     pass
@@ -63,7 +62,7 @@ setup(
     license="http://www.apache.org/licenses/LICENSE-2.0",
     description=doclines[0],
     long_description="\n".join(doclines[2:]),
-    classifiers=list(filter(None, classifiers.split("\n"))),
+    classifiers=[l for l in classifiers.split("\n") if l],
     
     ext_modules=[
         Extension(
