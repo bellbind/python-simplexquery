@@ -47,18 +47,18 @@ then autoreconf and configure, make, make install to "/usr/local"
 
 extract XQilla-2.2.4.zip at the same directory of xerces-c-src
 
-   unzip -q XQilla-2.2.4.zip
-   mv XQilla-2.2.4 xqilla
-   cd xqilla
-   ./configure LDFLAGS="-L/usr/local/lib -L/usr/local/bin" --with-xerces-c=`dirname $(pwd)`/xerces-c-src
-   make
-   make install
+    unzip -q XQilla-2.2.4.zip
+    mv XQilla-2.2.4 xqilla
+    cd xqilla
+    ./configure LDFLAGS="-L/usr/local/lib -L/usr/local/bin" --with-xerces-c=`dirname $(pwd)`/xerces-c-src
+    make
+    make install
 
 ## Build python-simplexquery
 
 set LIBRARY_PATH env with "/usr/local/lib".
 
-   LIBRARY_PATH=/usr/local/lib python setup.py build
+    LIBRARY_PATH=/usr/local/lib python setup.py build
 
 ## Trouble Shooting for cygwin
 
