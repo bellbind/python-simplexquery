@@ -244,5 +244,11 @@ execute_all(const char * xquery, const char * context_xml,
     return 0;
 }
 
+extern const char *
+get_xerces_version()
+{
+    return XERCES_FULLVERSIONDOT;
+}
+
 }
 

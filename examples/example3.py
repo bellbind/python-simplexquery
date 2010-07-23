@@ -85,6 +85,11 @@ except TypeError as ex:
     print(ex)
     pass
 
+print("""
+['versions' returns version tuple]\
+""")
+print(sxq.versions())
+
 
 print("""
 [end]\

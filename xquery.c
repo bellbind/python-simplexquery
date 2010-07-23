@@ -1,6 +1,8 @@
 #include <Python.h> /* it must include Python.h at first */
 #include <string.h>
 
+#define MODULE_VERSION "1.0.3"
+
 typedef char * (* resolver_t)(void *, const char *);
 
 extern char * execute(
@@ -9,6 +11,7 @@ extern int execute_all(
     const char *, const char *, resolver_t, void *,
     void (void *, const char *), void *,
     char **);
+extern const char * get_xerces_version(void);
 
 extern void * (* get_malloc(void))(size_t) 
 {
@@ -130,6 +133,13 @@ xquery_execute_all(PyObject * self, PyObject * args, PyObject* kwargs)
     return NULL;  
 }
 
+static PyObject *
+xquery_versions(PyObject * self, PyObject * args) 
+{
+    return Py_BuildValue("(ss)", MODULE_VERSION, get_xerces_version());
+}
+
+
 static PyMethodDef  XQueryMethods[] = {
     {"execute", (PyCFunction) xquery_execute, 
      METH_VARARGS | METH_KEYWORDS, 
@@ -138,6 +148,10 @@ static PyMethodDef  XQueryMethods[] = {
     {"execute_all", (PyCFunction) xquery_execute_all, 
      METH_VARARGS | METH_KEYWORDS, 
      "execute_all(xquery_code[, context_xml][, resolver]) -> [unicode]"
+    },
+    {"versions", xquery_versions, 
+     METH_VARARGS, 
+     "versions() -> (simplexquery_version, xerces_version)"
     },
     {NULL, NULL, 0, NULL}
 };
