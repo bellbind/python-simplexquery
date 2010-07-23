@@ -1,11 +1,11 @@
 #!/bin/bash
 
-COMPILER_FLAG=-W -Wall -Wno-unused-parameter -Werror -fPIC
+COMPILER_FLAG="-W -Wall -Wno-unused-parameter -Werror -fPIC"
 if uname | grep "MINGW32" ; then
   EXT=pyd
 elif uname | grep "CYGWIN" ; then
   export LIBRARY_PATH=/usr/local/lib
-  COMPILER_FLAG=-Wall -Wno-unused-parameter -Werror
+  COMPILER_FLAG="-Wall -Wno-unused-parameter -Werror"
   EXT=dll
 elif uname | grep "Darwin" ; then
   EXT=dylib
