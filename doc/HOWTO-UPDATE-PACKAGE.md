@@ -41,9 +41,9 @@ A version string consists release.major.minor
 
 ## Check list when version up
 
+- xquery.c
 - setup.py
 - debian/changelog
-- doc/HOWTO-BUILD-DEB.md
 
 These files contain version string
 

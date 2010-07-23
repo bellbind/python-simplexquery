@@ -1,3 +1,9 @@
+python-simplexquery (1.0.4-0nmu1) lucid; urgency=low
+
+  * add "versions()" module function
+
+ -- bellbind <bellbind@gmail.com>  Fri, 23 Jul 2010 23:11:29 +0900
+
 python-simplexquery (1.0.3-0nmu1) lucid; urgency=low
 
   * support build on amd64 systems
@@ -6,7 +12,7 @@ python-simplexquery (1.0.3-0nmu1) lucid; urgency=low
 
 python-simplexquery (1.0.2-0nmu1) lucid; urgency=low
 
-  * change error message by XQilla exceptions more detailed  
+  * change error message by XQilla exceptions more detailed
 
  -- bellbind <bellbind@gmail.com>  Tue, 20 Jul 2010 22:11:20 +0900
 

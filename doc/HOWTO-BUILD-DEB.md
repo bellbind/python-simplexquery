@@ -7,7 +7,7 @@
 
 ## Make deb package
 
-    VER=1.0.2
+    VER=1.0.2 # for example
     git clone git://github.com/bellbind/python-simplexquery.git python-simplexquery-$VER
     rm -rf python-simplexquery-$VER/.git/
     tar zcf python-simplexquery_$VER.orig.tar.gz python-simplexquery-$VER/
