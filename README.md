@@ -28,14 +28,18 @@ You can install on both Python3.x and Python2.x
 - xqilla (2.0.0 - 2.2.4)
 - xerces-c (2.8.x, 3.1.x)
 
-for ubuntu lucid:
-
-    apt-get build-dep xqilla
-    apt-get install libxqilla-dev
 
 ## Build from source
 
     python setup.py bdist_egg
+
+## For Ubuntu
+
+ppa is now available for ubuntu 10.04 lucid
+
+    sudo apt-add-repository ppa:bellbind/python-simplexquery
+    apt-get update
+    apt-get install python-simplexquery
 
 ## For Windows
 
