@@ -1,5 +1,5 @@
 include README.md
+include examples/*.py
+include test/*.py
 graft debian
 graft doc
-graft examples
-include test/*.py
