@@ -1,7 +1,7 @@
 #include <Python.h> /* it must include Python.h at first */
 #include <string.h>
 
-#define MODULE_VERSION "1.0.4"
+#define MODULE_VERSION "1.0.5"
 
 typedef char * (* resolver_t)(void *, const char *);
 

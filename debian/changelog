@@ -1,3 +1,9 @@
+python-simplexquery (1.0.5-0nmu1) lucid; urgency=low
+
+  * change packaging system from cdbs to dh
+
+ -- bellbind <bellbind@gmail.com>  Sat, 07 Aug 2010 11:09:28 +0900
+
 python-simplexquery (1.0.4-0nmu1) lucid; urgency=low
 
   * add "versions()" module function
