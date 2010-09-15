@@ -1,3 +1,10 @@
+python-simplexquery (1.0.5-0nmu2) maverick; urgency=low
+
+  * update for maverick
+  * split binary packages to python2.6-simplexquery, python2.7-simplexquery, python3.1-simplexquery
+
+ -- bellbind <bellbind@gmail.com>  Wed, 15 Sep 2010 15:38:07 +0900
+
 python-simplexquery (1.0.5-0nmu1) lucid; urgency=low
 
   * change packaging system from cdbs to dh
