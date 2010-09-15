@@ -39,7 +39,7 @@ Description: A simple native XQuery processing module using xqilla.
 
 Package: python3.1-simplexquery
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, python3.1, libxqilla3
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3.1, libxqilla5
 Description: A simple native XQuery processing module using xqilla.
  Usage:
  .
