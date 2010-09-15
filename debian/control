@@ -12,6 +12,7 @@ Homepage: http://github.com/bellbind/python-simplexquery
 Package: python2.6-simplexquery
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, python2.6, libxqilla5, 
+Provides: python-simplexquery
 Description: A simple native XQuery processing module using xqilla.
  Usage:
  .
@@ -40,6 +41,7 @@ Description: A simple native XQuery processing module using xqilla.
 Package: python3.1-simplexquery
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, python3.1, libxqilla5
+Provides: python3-simplexquery
 Description: A simple native XQuery processing module using xqilla.
  Usage:
  .
