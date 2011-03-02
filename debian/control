@@ -12,8 +12,6 @@ Homepage: http://github.com/bellbind/python-simplexquery
 Package: python2.6-simplexquery
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, python2.6, libxqilla5, 
-Replaces: python-simplexquery (<< 1.0.5.1)
-Provides: python-simplexquery
 Description: A simple native XQuery processing module using xqilla.
  Usage:
  .
@@ -27,6 +25,8 @@ Description: A simple native XQuery processing module using xqilla.
 
 Package: python2.7-simplexquery
 Architecture: any
+Replaces: python-simplexquery (<< 1.0.5.1)
+Provides: python-simplexquery
 Depends: ${shlibs:Depends}, ${misc:Depends}, python2.7, libxqilla5, 
 Description: A simple native XQuery processing module using xqilla.
  Usage:
@@ -42,6 +42,20 @@ Description: A simple native XQuery processing module using xqilla.
 Package: python3.1-simplexquery
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, python3.1, libxqilla5
+Description: A simple native XQuery processing module using xqilla.
+ Usage:
+ .
+      import simplexquery as sxq
+      print(sxq.execute("<body>{string(/user)}</body>", "<user>Taro</user>"))
+ .
+ This module is designed for using XQuery on python easily, so the module:
+ .
+   - only provides stateless functions which only use python builtins objects
+   - ...
+
+Package: python3.2-simplexquery
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python3.2, libxqilla5
 Replaces: python3-simplexquery (<< 1.0.5.1)
 Provides: python3-simplexquery
 Description: A simple native XQuery processing module using xqilla.
