@@ -1,3 +1,9 @@
+python-simplexquery (1.0.5.3-0nmu1) natty; urgency=low
+
+  * fix for pyshared conflicts on python file layout on natty
+
+ -- bellbind <bellbind@gmail.com>  Wed, 02 Mar 2011 17:48:21 +0900
+
 python-simplexquery (1.0.5.2-0nmu1) natty; urgency=low
 
   * update for ubuntu natty
