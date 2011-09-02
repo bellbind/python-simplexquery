@@ -1,3 +1,9 @@
+python-simplexquery (1.0.5.4-0nmu1) oneiric; urgency=low
+
+  * fix debian/* files for lintian clean
+
+ -- bellbind <bellbind@gmail.com>  Fri, 02 Sep 2011 15:50:21 +0900
+
 python-simplexquery (1.0.5.3-0nmu1) natty; urgency=low
 
   * fix for pyshared conflicts on python file layout on natty
