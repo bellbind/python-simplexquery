@@ -1,3 +1,9 @@
+python-simplexquery (1.0.5.5-0nmu1) precise; urgency=low
+
+  * update for ubuntu precise
+
+ -- bellbind <bellbind@gmail.com>  Sun, 25 Mar 2012 00:42:22 +0900
+
 python-simplexquery (1.0.5.4-0nmu1) oneiric; urgency=low
 
   * fix debian/* files for lintian clean
